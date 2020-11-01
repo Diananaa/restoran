@@ -48,7 +48,7 @@ if(isset($_POST["submit"]))
             <li>
                 <label for="dm_JumlahMakanan">Jumlah Tersedia</label>
                 <input type="text" id="dm_JumlahMakanan" name="dm_JumlahMakanan" value="<?= $barang["dm_JumlahMakanan"]; ?>">
-            </li>
+            </li> 
             <li>
                 <label for="dm_Tanggal">Tanggal</label><input type="date" id="dm_Tanggal" name="dm_Tanggal" value="<?= $barang['dm_Tanggal']; ?>">
             </li>
