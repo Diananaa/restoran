@@ -3,16 +3,13 @@ require 'backend/mc_detailpesan.php';
 
 $dm_id = $_GET["dm_id"];
 
+
 // $barang=query(" SELECT t_detailmakanan.dm_id, t_makanan.m_namamakanan, t_detailmakanan.dm_JumlahMakanan, 
 // t_detailmakanan.dm_Tanggal 
 // FROM t_detailmakanan, t_makanan 
 // GROUP BY t_detailmakanan.m_id ");
 
 $barang = query("SELECT * FROM t_detailmakanan WHERE dm_id= $dm_id") [0];
-
-print_r($barang["dm_JumlahMakanan"]);
-
-
 
 if(isset($_POST["submit"]))
 {
@@ -42,11 +39,18 @@ if(isset($_POST["submit"]))
     <ul>
             <li>
                 <label for="a_username">Nama Admin</label>
-                <input type="text" id="a_username" name="a_username" value="<?= $barang["a_username"]; ?>"> //hasil y kawa keluar
+                <input type="text" id="a_username" name="a_username" value="<?= $barang["a_username"]; ?>">
             </li>
             <li>
                 <label for="a_username">Nama Admin</label>
-                <input type="text" id="a_username" name="a_username" value="<?= $barang["dm_JumlahMakanan"]; ?>"> //hasil y kawa keluar
+                <input type="text" id="a_username" name="a_username" value="<?= $barang["dm_JumlahMakanan"]; ?>"> 
+            </li>
+            <li>
+                <label for="dm_JumlahMakanan">Jumlah Tersedia</label>
+                <input type="text" id="dm_JumlahMakanan" name="dm_JumlahMakanan" value="<?= $barang["dm_JumlahMakanan"]; ?>">
+            </li>
+            <li>
+                <label for="dm_Tanggal">Tanggal</label><input type="date" id="dm_Tanggal" name="dm_Tanggal" value="<?= $barang['dm_Tanggal']; ?>">
             </li>
             <li>
                 <select name="m_id" id="m_id">
@@ -59,13 +63,7 @@ if(isset($_POST["submit"]))
                 </select>
             </li>
             
-            <li>
-                <label for="dm_JumlahMakanan">Jumlah Tersedia</label>
-                <input type="text" id="dm_JumlahMakanan" name="dm_JumlahMakanan" value="<?= $barang["dm_JumlahMakanan"]; ?>"> //tidak bisa keluar
-            </li>
-            <li>
-                <label for="dm_Tanggal">Tanggal</label><input type="date" id="dm_Tanggal" name="dm_Tanggal" value="<?= $barang['dm_Tanggal']; ?>">
-            </li>
+           
            
             <li>
                 <button type="submit" name="submit">update</button>
