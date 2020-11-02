@@ -53,17 +53,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
         <div class="w3-col tablink w3-padding-large w3-hover-red">Makanan</div>
       </a>
     </div>
-
+    <?php include 'admin/koneksi.php';
+      $proses=$mysqli->query("SELECT * from t_makanan");
+      $i=1;
+      ?>
+      <?php while ($data=$proses->fetch_object()) {?>
     <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
-      <h1><b>Krabby Patty</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Rp 30.000,-</span></h1>
-      <p class="w3-text-grey">Tomat segar, potongan keju, sayuran, daging sapi berkualitas 	  
+      <h1><b><?php echo $data->m_namamakanan?></b><img src="admin/img/makanan/<?php echo $data->m_gambar?>" alt="<?php echo $data->m_namamakanan?>" width="100" height="100">
+ <span class="w3-right w3-tag w3-dark-grey w3-round"><?php echo "Rp".number_format($data->m_harga)?>,-</span></h1>
+      <p class="w3-text-grey"><?php echo $data->m_descmakanan?> 	  
 	  <span class="w3-right "><button type="button" class="btn btn-primary">Tambah</button>
 </span>
 		</p>
-		<img src="image/burger.jpg" alt="Girl in a jacket" width="100" height="100">
 		     <hr>
     </div>
-
+    <?php } ?>
   </div>
 </div>
 
