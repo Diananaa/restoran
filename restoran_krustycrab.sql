@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 04:01 PM
+-- Generation Time: Nov 02, 2020 at 01:00 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -58,13 +58,6 @@ CREATE TABLE `t_detailmakanan` (
   `dm_Tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `t_detailmakanan`
---
-
-INSERT INTO `t_detailmakanan` (`dm_id`, `m_id`, `a_username`, `dm_JumlahMakanan`, `dm_Tanggal`) VALUES
-(5, 2, 'admin', 20, '2020-10-12');
-
 -- --------------------------------------------------------
 
 --
@@ -76,7 +69,7 @@ CREATE TABLE `t_detailpesan` (
   `p_id` int(50) DEFAULT NULL,
   `dp_diskon` int(50) DEFAULT NULL,
   `dp_totalbayar` int(50) DEFAULT NULL,
-  `dp_tanggal` int(11) NOT NULL
+  `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,9 +92,8 @@ CREATE TABLE `t_makanan` (
 --
 
 INSERT INTO `t_makanan` (`m_id`, `a_username`, `m_namamakanan`, `m_harga`, `m_descmakanan`, `m_gambar`) VALUES
-(1, 'admin', 'jus mangga wow', 7000, 'hdhfs', '5f9bcfb1114c0.png'),
 (2, 'admin', 'jus manggi', 4999, 'goss', '5f9bcfe0105c2.png'),
-(3, 'admin', 'jus nigi', 3000, 'hmm.. nyaman', '5f9bcffe02fc2.png');
+(3, 'admin', 'jus nigpp', 3000, 'hmm.. nyaman', '5f9bcffe02fc2.png');
 
 -- --------------------------------------------------------
 
@@ -112,11 +104,11 @@ INSERT INTO `t_makanan` (`m_id`, `a_username`, `m_namamakanan`, `m_harga`, `m_de
 CREATE TABLE `t_pesan` (
   `p_id` int(11) NOT NULL,
   `dm_id` int(11) DEFAULT NULL,
+  `m_id` int(11) DEFAULT NULL,
   `u_Username` varchar(255) DEFAULT NULL,
-  `a_Username` varchar(255) DEFAULT NULL,
   `p_banyak` int(11) DEFAULT NULL,
   `p_TotalHarga` int(11) DEFAULT NULL,
-  `p_DescPesanan` text DEFAULT NULL
+  `p_DescPesanan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -179,7 +171,7 @@ ALTER TABLE `t_makanan`
 ALTER TABLE `t_pesan`
   ADD PRIMARY KEY (`p_id`),
   ADD KEY `dm_id` (`dm_id`),
-  ADD KEY `a_Username` (`a_Username`),
+  ADD KEY `m_id` (`m_id`),
   ADD KEY `u_Username` (`u_Username`);
 
 --
@@ -196,7 +188,7 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for table `t_detailmakanan`
 --
 ALTER TABLE `t_detailmakanan`
-  MODIFY `dm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `dm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `t_detailpesan`
@@ -214,7 +206,7 @@ ALTER TABLE `t_makanan`
 -- AUTO_INCREMENT for table `t_pesan`
 --
 ALTER TABLE `t_pesan`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -231,8 +223,7 @@ ALTER TABLE `t_detailmakanan`
 -- Constraints for table `t_detailpesan`
 --
 ALTER TABLE `t_detailpesan`
-  ADD CONSTRAINT `t_detailpesan_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `t_pesan` (`p_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_detailpesan_ibfk_2` FOREIGN KEY (`p_id`) REFERENCES `t_pesan` (`p_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_detailpesan_ibfk_1` FOREIGN KEY (`p_id`) REFERENCES `t_pesan` (`p_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t_makanan`
@@ -245,11 +236,8 @@ ALTER TABLE `t_makanan`
 --
 ALTER TABLE `t_pesan`
   ADD CONSTRAINT `t_pesan_ibfk_1` FOREIGN KEY (`dm_id`) REFERENCES `t_detailmakanan` (`dm_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_pesan_ibfk_2` FOREIGN KEY (`a_Username`) REFERENCES `t_admin` (`a_Username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_pesan_ibfk_3` FOREIGN KEY (`u_Username`) REFERENCES `t_user` (`u_Username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_pesan_ibfk_4` FOREIGN KEY (`dm_id`) REFERENCES `t_detailmakanan` (`dm_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_pesan_ibfk_5` FOREIGN KEY (`a_Username`) REFERENCES `t_admin` (`a_Username`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_pesan_ibfk_6` FOREIGN KEY (`u_Username`) REFERENCES `t_user` (`u_Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_pesan_ibfk_2` FOREIGN KEY (`m_id`) REFERENCES `t_makanan` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_pesan_ibfk_3` FOREIGN KEY (`u_Username`) REFERENCES `t_user` (`u_Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

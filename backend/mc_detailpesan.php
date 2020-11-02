@@ -45,16 +45,16 @@ function update_pesan($data){
     $dm_Tanggal = htmlspecialchars( $data["dm_Tanggal"]);
 
     $query= "UPDATE t_detailmakanan SET
-   m_id =$m_id',
+   m_id ='$m_id',
    a_username ='$a_username',
    dm_JumlahMakanan ='$dm_JumlahMakanan',
    dm_Tanggal ='$dm_Tanggal'
    WHERE dm_id=$dm_id
     ";
 
-mysqli_query($conn, $query);
+    mysqli_query($conn, $query);
 
-return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($conn);
 }
 
 function deletePesan($dm_id){

@@ -41,10 +41,7 @@ if(isset($_POST["submit"]))
                 <label for="a_username">Nama Admin</label>
                 <input type="text" id="a_username" name="a_username" value="<?= $barang["a_username"]; ?>">
             </li>
-            <li>
-                <label for="a_username">Nama Admin</label>
-                <input type="text" id="a_username" name="a_username" value="<?= $barang["dm_JumlahMakanan"]; ?>"> 
-            </li>
+            
             <li>
                 <label for="dm_JumlahMakanan">Jumlah Tersedia</label>
                 <input type="text" id="dm_JumlahMakanan" name="dm_JumlahMakanan" value="<?= $barang["dm_JumlahMakanan"]; ?>">

@@ -122,7 +122,7 @@ function updateMenu($data){
     WHERE m_id= $m_id
     ";
   
- mysqli_query($conn, $query);
+    mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 
