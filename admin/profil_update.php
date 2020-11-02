@@ -19,8 +19,7 @@ if (isset($_POST['update'])) {
 
     if ($filename!="" && $password!=""){
         if(!in_array($ext,$ekstensi) ) {
-            echo "<script> alert('Ekstensi salah');";
-            header('location:profile.php');
+            echo "<script> alert('Ekstensi salah');window.location.href='profile.php'</script>";
         }else{
             if($ukuran < 1044070){		
                 $xx = $rand.'_'.$filename;
@@ -28,14 +27,12 @@ if (isset($_POST['update'])) {
                 $proses = mysqli_query($mysqli,"UPDATE t_admin SET a_Username='$username', a_pwadmin='$password', 
                 a_NamaAdmin='$nama', a_TglLahir='$tgl', a_Alamat='$alamat',a_Foto='$xx' where a_id='$id'");
             }else{
-                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');";
-                header('location:profile.php');
+                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');window.location.href='profile.php'</script>";
             }
         }
     }elseif ($filename!="" && $password=="") {
         if(!in_array($ext,$ekstensi) ) {
-            echo "<script> alert('Ekstensi salah');";
-            header('location:profile.php');
+            echo "<script> alert('Ekstensi salah');window.location.href='profile.php'</script>";
         }else{
             if($ukuran < 1044070){		
                 $xx = $rand.'_'.$filename;
@@ -43,7 +40,7 @@ if (isset($_POST['update'])) {
                 $proses = mysqli_query($mysqli,"UPDATE t_admin SET a_Username='$username', 
                 a_NamaAdmin='$nama', a_TglLahir='$tgl', a_Alamat='$alamat',a_Foto='$xx' where a_id='$id'");
             }else{
-                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');";
+                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');window.location.href='profile.php'</script>";
                 header('location:profile.php');
             }
         }
@@ -56,12 +53,10 @@ if (isset($_POST['update'])) {
     }
 
     if ($proses) {
-        echo "<script> alert('Data berhasil di Update');";
-         header('location:index.php');
+        echo "<script> alert('Data berhasil di Update');window.location.href='index.php'</script>";
     }
     else{
-        echo "<script> alert('Data gagal di Update');";
-        header('location:profile.php');
+        echo "<script> alert('Data gagal di Update');window.location.href='profile.php'</script>";
 
     }
 }

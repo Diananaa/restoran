@@ -18,8 +18,7 @@ if (isset($_POST['update'])) {
 
 	if ($filename!=""){
         if(!in_array($ext,$ekstensi) ) {
-            echo "<script> alert('Ekstensi salah');";
-            header('location:form_update.php');
+            echo "<script> alert('Ekstensi salah');window.location.href='form_update.php'</script>";
         }else{
             if($ukuran < 1044070){		
                 $xx = $rand.'_'.$filename;
@@ -27,8 +26,7 @@ if (isset($_POST['update'])) {
                 $proses = mysqli_query($mysqli,"UPDATE t_makanan SET a_id='$aid', m_namamakanan='$makanan', m_harga='$harga', m_descmakanan='$deskripsi',m_gambar='$xx'
                     where m_id='$id'");
             }else{
-                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');";
-                header('location:form_update.php');
+                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');window.location.href='form_update.php'</script>";
             }
         }
     }else{
@@ -38,8 +36,7 @@ if (isset($_POST['update'])) {
     
     
     if ($proses) {
-        echo "<script> alert('Data berhasil di Update');";
-         header('location:basic_table.php');
+        echo "<script> alert('Data berhasil di Update');window.location.href='basic_table.php'</script>";
     }
     else{
         echo "<script> alert('Data gagal di Update');";

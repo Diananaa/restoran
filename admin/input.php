@@ -15,8 +15,7 @@
 
 	if ($filename!=""){
         if(!in_array($ext,$ekstensi) ) {
-            echo "<script> alert('Ekstensi salah');";
-            header('location:form_validation.php');
+            echo "<script> alert('Ekstensi salah');window.location.href='form_validation.php'</script>";
         }else{
             if($ukuran < 1044070){		
                 $xx = $rand.'_'.$filename;
@@ -24,14 +23,13 @@
                 $proses = mysqli_query($mysqli,"INSERT INTO t_makanan (a_id, m_namamakanan, m_harga, m_descmakanan,m_gambar) 
  					values('$id','$makanan', '$harga', '$deskripsi','$xx')");
             }else{
-                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');";
-                header('location:form_validation.php');
+                echo "<script> alert('Ukuran terlalu besar, maksimal 1 MB!');
+                window.location.href='form_validation.php'</script>";
             }
         }
     }
 
  if ($proses) {
- 	echo "<script> alert('Data Berhasil Di Input');</script>";
- 	header('location:basic_table.php');
+ 	echo "<script> alert('Data Berhasil Di Input');window.location.href='basic_table.php'</script>";
  }
  ?>
