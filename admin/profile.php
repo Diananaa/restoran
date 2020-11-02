@@ -194,13 +194,13 @@ $ambil=mysqli_fetch_array($query);
                     </div>
 
                     <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Foto <span class="required"></span></label>
+                      <label for="cname" class="control-label col-lg-2">Foto <span class="required">(.png | .jpg | .jpeg | Maks. 1 MB)</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" name="foto" type="file"  />
+                        <input class="form-control" name="foto" type="file"  accept="image/png, image/jpeg"/>
                       </div>
                     </div>
                     <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Password<span class="required"></span></label>
+                      <label for="cname" class="control-label col-lg-2">Password</label>
                       <div class="col-lg-10">
                         <input class="form-control"name="password" type="text"  />
                       </div>

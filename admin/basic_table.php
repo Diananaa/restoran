@@ -160,7 +160,7 @@ session_start();
                       <td><?php echo "Rp".number_format($data->m_harga)?></td>
                       <td><?php echo $data->m_descmakanan?></td>
                       <td>
-                        <img alt="" src="../image/<?php echo $data->m_gambar?>" height="40" width="40">
+                        <img alt="" src="img/makanan/<?php echo $data->m_gambar?>" height="50" width="50">
                       </td>
                       <td>
                         <div class="btn-group">

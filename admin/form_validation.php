@@ -154,9 +154,9 @@ session_start();
                     </div>
 
                     <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Gambar <span class="required">*</span></label>
+                      <label for="cname" class="control-label col-lg-2">Gambar <span class="required">*(.png | .jpg | .jpeg | Maks. 1 MB)</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" id="form_kota" name="gambar" type="file" required />
+                        <input class="form-control" id="form_kota" name="gambar" type="file" required  accept="image/png, image/jpeg"/>
                       </div>
                     </div>
 

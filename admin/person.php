@@ -162,7 +162,7 @@ session_start();
                       <td><?php echo $data->u_AlamatUser?></td>
                       <td><?php echo $data->u_NoHp?></td>
                       <td>
-                        <img alt="" src="../image/<?php echo $data->u_Foto?>" height="40" width="40">
+                        <img alt="" src="../image/user/<?php echo $data->u_Foto?>" height="50" width="50">
                       </td>
                      
                     </tr>
