@@ -1,38 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>RESTORAN KRUSTY CRAB</title>
-</head>
+<html>
+<title>Restoran Krusty Crab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<style>
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("http://localhost/RESTORAN/image/shawn-ang-nmpW_WwwVSc-unsplash.jpg");
+  min-height: 90%;
+}
+</style>
 <body>
-	<h1>daftar makanan</h1>
-	<form action="" method="post" enctype="multipart/form-data" >
-		<ul>
-			<li>
-				<label for="kategoti">Kategori</label>
-				<input type="text" name="id_k" id="id_k" >
-			</li>
-			<li>
-				<label for="a_username">Username</label><input type="text" id="a_username" name="a_username">
-			</li>
-			<li>
-				<label for="m_namamakanan">Nama Makanan</label><input type="text" id="m_namamakanan" name="m_namamakanan" >
-			</li>
-			<li>
-				<label for="m_stok">Stok</label><input type="text" id="m_stok" name="m_stok">
-			</li>
-			<li>
-				<label for="m_harga">Harga</label><input type="text" name="m_harga" id="m_harga">
-			</li>
-			<li>
-				<label for="m_descmakanan">Deskripsi</label><input type="text" name="m_descmakanan" id="m_descmakanan">
-			</li>
-			<li>
-				<label for="m_gambar">Gambar</label>
-				<input type="file" name="m_gambar" id="m_gambar">
-			</li>
-		</ul>
-	</form>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+    <a href="#" class="w3-bar-item w3-button">BERANDA</a>
+    <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+    <a href="#about" class="w3-bar-item w3-button">TENTANG KAMI</a>
+    <a href="#myMap" class="w3-bar-item w3-button">KONTAK</a>
+  </div>
+</div>
+  
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min"  id="home">
+  <div class="w3-display-bottomleft w3-padding">
+    <span class="w3-tag w3-xlarge">Buka dari 10.00-21.00 WIB</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-black w3-hide-small" style="font-size:100px">RESTORAN<br>KRUSTY CRAB</span>
+    <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Menunya apa aja, ya???</a></p>
+  </div>
+</header>
+
+<!-- Menu Container -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+  
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">MENU</h1>
+    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Pizza');" id="myLink">
+        <div class="w3-col tablink w3-padding-large w3-hover-red">Makanan</div>
+      </a>
+    </div>
+
+    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Krabby Patty</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Rp 30.000,-</span></h1>
+      <p class="w3-text-grey">Tomat segar, potongan keju, sayuran, daging sapi berkualitas 	  
+	  <span class="w3-right "><img src="image/burger.jpg" alt="Girl in a jacket" width="100" height="100"></span>
+		</p>
+		<br> 
+		     <hr>
+    </div>
+
+  </div>
+</div>
+
+<!-- About Container -->
+<div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="about">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Tentang Kami</h1>
+    <p>Restoran Krusty Crab didirikan oleh bla bla bla.</p>
+    <p>Tempat kami sangat instagramamble.</p>
+    <h1><b>Jam Buka</b></h1>
+    
+    <div class="w3-row">
+      <div class="w3-col s6">
+        <p>Minggu Tutup</p>
+        <p>Senin-Kamis 10.00 - 21.00 WIB</p>
+      </div>
+      <div class="w3-col s6">
+        <p>Jum'at 13:00 - 21:00 WIB</p>
+        <p>Sabtu 10:00 - 23:00 WIB</p>
+      </div>
+    </div>
+	<h1><b>Alamat</b></h1>
+	<div class="w3-col s6">
+        <p>Jl. Bla bla</p>
+      </div>
+  </div>
+</div>
+
+<!-- Contact -->
+<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Kontak</h1>
+    <p>Hubungi kami di 08xxxxx</p>
+    <p><span class="w3-tag">FYI!</span> Kami melayani layanan-penuh untuk berbagai kegiatan, besar atau kecil. Kami memahami kebutuhan Anda dan rasakan kenikmatan dari 2 sisi, keindahan dan kenikmatan rasa.</p>
+    <p class="w3-xxlarge"><strong>Booking</strong> meja, sekedar bertanya atau ada keluhan pelanggan, hubungi nomor diatas. <br>Terima kasih. </p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+  <p>Powered by <a href="" title="YH" target="_blank" class="w3-hover-text-green">yh</a></p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-red";
+}
+document.getElementById("myLink").click();
+</script>
+
 </body>
 </html>

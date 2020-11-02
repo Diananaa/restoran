@@ -24,42 +24,78 @@ if(isset($_POST["login"])){
             exit;
         }
         $error = true;
+    }else{
+     $error2=true;
     }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login User</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Login User</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+  	font-size: 15px;
+}
+.login-form form {
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.form-control, .btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+.btn {        
+    font-size: 15px;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
-    <h1>Login User</h1>
-    <?php 
+<div class="login-form">
+        <h2 class="text-center">Log in User</h2>  
+        <?php 
         if(isset ($error)):?>
 
-    <p style="color: red; font-style:italic;">username / password salah</p>
-        <?php endif; ?>
-        <form action="" method="post">
+    <p style="color: red; font-style:italic;">username / password salah</p>    
+    <?php endif; ?> 
+    <?php 
+        if(isset ($error2)):?>
 
-            <ul>
-                <li>
-                    <label for="u_Username">Username : </label>
-                    <input type="text" name="u_Username" id="u_Username">
-                </li>
-                <li>
-                    <label for="u_pwuser">Password : </label>
-                    <input type="password" name="u_pwuser" id="u_pwuser">
-                </li>
-                <li>
-                    <button type="submit" name="login">LOGIN</button>
-                </li>
-            </ul>
-        </form>
+    <p style="color: red; font-style:italic;">Akun tidak terdaftar!</p>    
+    <?php endif; ?> 
+    
+    <form action="" method="post">
 
+        <div class="form-group">
         
+            <input type="text" class="form-control" placeholder="Username" name="u_Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="u_pwuser" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" name="login">Masuk</button>
+        </div>
+        <div class="clearfix">
+        </div>        
+    </form>
+    <p class="text-center"><a href="#">Daftar Akun</a></p>
+</div>
 </body>
 </html>
