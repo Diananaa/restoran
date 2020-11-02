@@ -49,7 +49,7 @@ if(isset($_POST["login"])){
 }
 .login-form form {
     margin-bottom: 15px;
-    background: #f7f7f7;
+    background: #ffffff;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
 }
@@ -66,18 +66,18 @@ if(isset($_POST["login"])){
 }
 </style>
 </head>
-<body>
+<body style="background-color:Gray;">
 <div class="login-form">
-        <h2 class="text-center">Log in User</h2>  
+        <h2 class="text-center" style="color:white;">Login User</h2>  
         <?php 
         if(isset ($error)):?>
 
-    <p style="color: red; font-style:italic;">username / password salah</p>    
+    <p style="color: yellow; font-style:italic;">username / password salah</p>    
     <?php endif; ?> 
     <?php 
         if(isset ($error2)):?>
 
-    <p style="color: red; font-style:italic;">Akun tidak terdaftar!</p>    
+    <p style="color: yellow; font-style:italic;">Akun tidak terdaftar!</p>    
     <?php endif; ?> 
     
     <form action="" method="post">
@@ -95,7 +95,7 @@ if(isset($_POST["login"])){
         <div class="clearfix">
         </div>        
     </form>
-    <p class="text-center"><a href="#">Daftar Akun</a></p>
+    <p class="text-center"><button type="button" class="btn btn-warning">Daftar Akun</button></p>
 </div>
 </body>
 </html>

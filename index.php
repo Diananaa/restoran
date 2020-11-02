@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 body, html {height: 100%}
 body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
@@ -25,6 +27,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     <a href="#menu" class="w3-bar-item w3-button">MENU</a>
     <a href="#about" class="w3-bar-item w3-button">TENTANG KAMI</a>
     <a href="#myMap" class="w3-bar-item w3-button">KONTAK</a>
+    <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button">Login</a>
+    <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup>0</sup></a>
   </div>
 </div>
   
@@ -53,9 +57,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
       <h1><b>Krabby Patty</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Rp 30.000,-</span></h1>
       <p class="w3-text-grey">Tomat segar, potongan keju, sayuran, daging sapi berkualitas 	  
-	  <span class="w3-right "><img src="image/burger.jpg" alt="Girl in a jacket" width="100" height="100"></span>
+	  <span class="w3-right "><button type="button" class="btn btn-primary">Tambah</button>
+</span>
 		</p>
-		<br> 
+		<img src="image/burger.jpg" alt="Girl in a jacket" width="100" height="100">
 		     <hr>
     </div>
 
@@ -92,7 +97,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
   <div class="w3-content">
     <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Kontak</h1>
     <p>Hubungi kami di 08xxxxx</p>
-    <p><span class="w3-tag">FYI!</span> Kami melayani layanan-penuh untuk berbagai kegiatan, besar atau kecil. Kami memahami kebutuhan Anda dan rasakan kenikmatan dari 2 sisi, keindahan dan kenikmatan rasa.</p>
+    <p><span class="w3-tag">FYI!</span> Kami melayani full-service untuk berbagai kegiatan, besar atau kecil. Kami memahami kebutuhan Anda dan rasakan kenikmatan dari 2 sisi, keindahannya dan kenikmatan rasa.</p>
     <p class="w3-xxlarge"><strong>Booking</strong> meja, sekedar bertanya atau ada keluhan pelanggan, hubungi nomor diatas. <br>Terima kasih. </p>
   </div>
 </div>
@@ -101,6 +106,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 <footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
   <p>Powered by <a href="" title="YH" target="_blank" class="w3-hover-text-green">yh</a></p>
 </footer>
+
+<!-- modals -->
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Anda perlu login untuk melakukan pemesanan!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Lanjutkan login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 // Tabbed Menu
