@@ -68,7 +68,7 @@ if(isset($_POST["login"])){
 </head>
 <body style="background-color:Gray;">
 <div class="login-form">
-        <h2 class="text-center" style="color:white;">Login User</h2>  
+        <h2 class="text-center" style="color:white;">Daftar User</h2>  
         <?php 
         if(isset ($error)):?>
 
@@ -83,19 +83,32 @@ if(isset($_POST["login"])){
     <form action="" method="post">
 
         <div class="form-group">
-        
+            <input type="text" class="form-control" placeholder="Username" name="u_Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nama" name="u_nama" required="required">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Alamat" name="u_alamat" required="required">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="No. HP" name="u_hp" required="required">
+        </div>
+        <div class="form-group">
             <input type="text" class="form-control" placeholder="Username" name="u_Username" required="required">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Password" name="u_pwuser" required="required">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" name="login">Masuk</button>
+            <input type="password" class="form-control" placeholder="Ulangi Password" name="u_repassword" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" name="login">Daftar</button>
         </div>
         <div class="clearfix">
         </div>        
-        <p class="text"><a href="http://localhost/RESTORAN/daftar.php">Daftar Akun</a></p>
-
+        <p class="text"><a href="http://localhost/RESTORAN/loginuser.php">Login</a></p>
     </form>
 </div>
 </body>
