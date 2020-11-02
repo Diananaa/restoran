@@ -1,15 +1,14 @@
 <?php 
  include 'koneksi.php';
- 
- $nip = $_POST['nip'];
- $nama = $_POST['nama'];
- $tgl = $_POST['tgl'];
- $alamat = $_POST['alamat'];
- $kota = $_POST['kota'];
- $kontak = $_POST['kontak'];
- $departemen = $_POST['departemen'];
+ session_start();
 
- $proses = mysqli_query($mysqli,"INSERT INTO karyawan (nip, nama, tgl, alamat, kota, kontak, departemen) values('$nip','$nama', '$tgl', '$alamat', '$kota', '$kontak','$departemen')");
+ $makanan = $_POST['makanan'];
+ $harga = $_POST['harga'];
+ $deskripsi = $_POST['deskripsi'];
+ $id = $_SESSION['id'];
+
+ $proses = mysqli_query($mysqli,"INSERT INTO t_makanan (a_id, m_namamakanan, m_harga, m_descmakanan) 
+ values('$id','$makanan', '$harga', '$deskripsi')");
 
  if ($proses) {
  	echo "<script> alert('Data Berhasil Di Input');</script>";

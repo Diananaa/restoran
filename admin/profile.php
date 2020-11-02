@@ -1,3 +1,12 @@
+<?php
+include "koneksi.php";
+ob_start();
+
+session_start();
+$query=mysqli_query($mysqli,"SELECT * from t_admin WHERE a_username='".$_SESSION['username']."'");
+$ambil=mysqli_fetch_array($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,9 +59,9 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/android-icon-36x36.png">
+                                <img alt="" src="img/<?= $_SESSION['foto']?>" height="40" width="40">
                             </span>
-                            <span class="username">Username</span>
+                            <span class="username"><?= $_SESSION['username']?></span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -96,7 +105,7 @@
                       </a>
           </li>
           <li>
-            <a class="" href="person.php? id=5">
+          <a class="" href="person.php">
                           <i class="icon_table"></i>
                           <span>User</span>
                       </a>
@@ -126,14 +135,14 @@
             <div class="profile-widget profile-widget-info">
               <div class="panel-body">
                 <div class="col-lg-2 col-sm-2">
-                  <h4>Username</h4>
+                  <h4><?= $_SESSION['username']?></h4>
                   <div class="follow-ava">
-                    <img src="img/001-user.png" alt="">
+                    <img src="img/<?= $_SESSION['foto']?>" alt="">
                   </div>
                   <h6>Administrator</h6>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
-                  <p>Hello I’m Username .</p>
+                  <p>Halo, Saya <?= $_SESSION['nama']?> .</p>
                </div>
               </div>
             </div>
@@ -149,7 +158,63 @@
               <div class="panel-body">
                 <div class="tab-content">
                   <!-- profile -->
-                  
+                  <!-- Form validations -->
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+                Data
+              </header>
+              <div class="panel-body">
+                <div class="form">
+                  <form role="form" class="form-validate form-horizontal" method="POST" action="profil_update.php?id=<?= $ambil['a_id'] ?>" enctype="multipart/form-data">
+                    <div class="form-group ">
+                      <label for="cname" class="control-label col-lg-2">Nama <span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input class="form-control" name="nama" minlength="5" type="text" required value="<?= $ambil['a_NamaAdmin'] ?>" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="cname" class="control-label col-lg-2">Username<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input class="form-control"name="username" type="text" required value="<?= $ambil['a_Username'] ?>" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="cname" class="control-label col-lg-2">Tanggal Lahir<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <input class="form-control"name="tgl" type="date" required  value="<?= $ambil['a_TglLahir'] ?>"/>
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="ccomment" class="control-label col-lg-2">Alamat<span class="required">*</span></label>
+                      <div class="col-lg-10">
+                        <textarea class="form-control " name="alamat" required ><?= $ambil['a_Alamat'] ?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group ">
+                      <label for="cname" class="control-label col-lg-2">Foto <span class="required"></span></label>
+                      <div class="col-lg-10">
+                        <input class="form-control" name="foto" type="file"  />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="cname" class="control-label col-lg-2">Password<span class="required"></span></label>
+                      <div class="col-lg-10">
+                        <input class="form-control"name="password" type="text"  />
+                      </div>
+                    </div>
+                    
+
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <!-- <button class="btn btn-primary" type="submit" name="input">Ubah</button> -->
+                        <button class="btn btn-primary" onclick="return confirm('Update data ini ?')" type="submit" name="update">Ubah</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
                 </div>
               </div>
             </section>

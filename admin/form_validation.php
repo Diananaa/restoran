@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,11 +51,11 @@
           <!-- task notificatoin start -->
           <!-- user login dropdown start-->
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                            <img alt="" src="img/android-icon-36x36.png">
+                                <img alt="" src="img/<?= $_SESSION['foto']?>" height="40" width="40">
                             </span>
-                            <span class="username">Username</span>
+                            <span class="username"><?= $_SESSION['username']?></span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -96,7 +99,7 @@
                       </a>
           </li>
           <li>
-            <a class="" href="person.php? id=5">
+          <a class="" href="person.php">
                           <i class="icon_table"></i>
                           <span>User</span>
                       </a>

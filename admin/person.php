@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Department Person</title>
+  <title>Daftar User</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -51,9 +54,9 @@
           <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                            <img alt="" src="img/android-icon-36x36.png">
+                                <img alt="" src="img/<?= $_SESSION['foto']?>" height="40" width="40">
                             </span>
-                            <span class="username">Username</span>
+                            <span class="username"><?= $_SESSION['username']?></span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -97,7 +100,7 @@
                       </a>
           </li>
           <li>
-            <a class="" href="person.php? id=5">
+            <a class="" href="person.php">
                           <i class="icon_table"></i>
                           <span>User</span>
                       </a>
@@ -135,29 +138,32 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th><i class="icon_key_alt"></i> No.</th>
+                      <th><i class="icon_ol"></i> No.</th>
                       <th><i class="icon_profile"></i> Nama</th>
-                      <th><i class="icon_calendar"></i> Username</th>
-                      <th><i class="icon_pin_alt"></i> Password</th>
-                      <th><i class="icon_mobile"></i> Alamat</th>
-                      <th><i class="icon_menu"></i> No. Hp</th>
-                      <th><i class="icon_menu"></i> Foto</th>
+                      <th><i class="icon_tags_alt"></i> Username</th>
+                      <th><i class="icon_key_alt"></i> Password</th>
+                      <th><i class="icon_pin_alt"></i> Alamat</th>
+                      <th><i class="icon_mobile"></i> No. Hp</th>
+                      <th><i class="icon_image"></i> Foto</th>
                      
                     </tr>
                   </thead>
                   <tbody>
                     <?php include 'koneksi.php';
-                        $proses=$mysqli->query("SELECT nip, nama, tgl, kota, kontak, departemen from karyawan where departemen='Person'");
+                        $proses=$mysqli->query("SELECT * from t_user ");
+                        $i=1;
                         ?>
                         <?php while ($data=$proses->fetch_object()) {?>
                     <tr>
-                      <td><?php echo $data->nip?></td>
-                      <td><?php echo $data->nama?></td>
-                      <td><?php echo $data->tgl?></td>
-                      <td><?php echo $data->kota?></td>
-                      <td><?php echo $data->kontak?></td>
-                      <td><?php echo $data->departemen?></td>
-                      <td><?php echo $data->departemen?></td>
+                      <td><?php echo $i++?></td>
+                      <td><?php echo $data->u_NamaUser?></td>
+                      <td><?php echo $data->u_Username?></td>
+                      <td><?php echo $data->u_pwuser?></td>
+                      <td><?php echo $data->u_AlamatUser?></td>
+                      <td><?php echo $data->u_NoHp?></td>
+                      <td>
+                        <img alt="" src="../image/<?php echo $data->u_Foto?>" height="40" width="40">
+                      </td>
                      
                     </tr>
                     <?php } ?>

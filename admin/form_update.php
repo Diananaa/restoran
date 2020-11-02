@@ -1,4 +1,11 @@
+<?php
+include "koneksi.php";
+ob_start();
 
+session_start();
+$query=mysqli_query($mysqli,"SELECT * from t_makanan WHERE m_id='".$_GET['id']."'");
+$ambil=mysqli_fetch_array($query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,17 +47,7 @@
       <a href="profile.php" class="logo">Krusty <span class="lite">Crab</span></a>
       <!--logo end-->
 
-      <div class="nav search-row" id="top_menu">
-        <!--  search form start -->
-        <ul class="nav top-menu">
-          <li>
-            <form class="navbar-form">
-              <input class="form-control" placeholder="Search" type="text">
-            </form>
-          </li>
-        </ul>
-        <!--  search form end -->
-      </div>
+  
 
       <div class="top-nav notification-row">
         <!-- notificatoin dropdown start-->
@@ -59,11 +56,11 @@
           <!-- task notificatoin start -->
           <!-- user login dropdown start-->
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatarsmall.jpg">
+                                <img alt="" src="img/<?= $_SESSION['foto']?>" height="40" width="40">
                             </span>
-                            <span class="username">Lukmanul Hakim</span>
+                            <span class="username"><?= $_SESSION['username']?></span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -91,7 +88,7 @@
           <li class="active">
             <a class="" href="profile.php">
                           <i class="icon_house_alt"></i>
-                          <span>Profile</span>
+                          <span>Profil</span>
                       </a>
           </li>
           <li>
@@ -103,22 +100,14 @@
           <li>
             <a class="" href="basic_table.php">
                           <i class="icon_table"></i>
-                          <span>List</span>
+                          <span>Daftar Makanan</span>
                       </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
-                          <span>Department</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
+          <li>
+          <a class="" href="person.php">
+                          <i class="icon_table"></i>
+                          <span>User</span>
                       </a>
-         <ul class="sub">
-              <li><a class="" href="technology.php? id=1">Technology Information</a></li>
-              <li><a class="" href="production.php? id=2"><span>Production</span></a></li>
-              <li><a class="" href="marketing.php? id=3"><span>Marketing</span></a></li>
-              <li><a class="" href="finance.php? id=4">Finance</a></li>
-              <li><a class="" href="person.php? id=5">Person</a></li>
-            </ul>
           </li>
 
         </ul>
@@ -153,32 +142,32 @@
                   <div class="form-group ">
                       <label for="cname" class="control-label col-lg-2">Nama Makanan <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" id="form_nip" name="makanan" minlength="5" type="text" required />
+                        <input class="form-control" name="makanan" type="text" required value="<?= $ambil['m_namamakanan'] ?>" />
                       </div>
                     </div>
                     <div class="form-group ">
                       <label for="cname" class="control-label col-lg-2">Harga (Rp) <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control" id="form_nama" name="harga" type="number" required />
+                        <input class="form-control" name="harga" type="number" required value="<?= $ambil['m_harga'] ?>"/>
                       </div>
                     </div>
                     <div class="form-group ">
                       <label for="ccomment" class="control-label col-lg-2">Deskripsi<span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <textarea class="form-control " id="form_alamat" name="deskripsi" required></textarea>
+                        <textarea class="form-control " name="deskripsi" required ><?=$ambil['m_descmakanan'] ?></textarea>
                       </div>
                     </div>
 
                     <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Gambar <span class="required">*</span></label>
+                      <label for="cname" class="control-label col-lg-2">Gambar </label>
                       <div class="col-lg-10">
-                        <input class="form-control" id="form_kota" name="gambar" type="file" required />
+                        <input class="form-control" name="gambar" type="file"  />
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
-                         <input type="hidden" value="<?php echo $data->nip;?>" name="id">
+                         <input type="hidden" value="<?=$ambil['m_id'] ?>" name="id">
                         <button class="btn btn-primary" onclick="return confirm('Update data ini ?')" type="submit" name="update">Save</button>
                     
                       </div>

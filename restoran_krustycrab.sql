@@ -41,8 +41,6 @@ CREATE TABLE `t_admin` (
 -- Dumping data for table `t_admin`
 --
 
-INSERT INTO `t_admin` (`a_Username`, `a_pwadmin`, `a_NamaAdmin`, `a_Jabatan`, `a_TglLahir`, `a_Alamat`, `a_Foto`) VALUES
-('admin', 'admin', 'admin', 'admin', '2020-10-01', 'admin', '5f9bcf6107ed5.png');
 
 -- --------------------------------------------------------
 
@@ -62,8 +60,7 @@ CREATE TABLE `t_detailmakanan` (
 -- Dumping data for table `t_detailmakanan`
 --
 
-INSERT INTO `t_detailmakanan` (`dm_id`, `m_id`, `a_username`, `dm_JumlahMakanan`, `dm_Tanggal`) VALUES
-(5, 2, 'admin', 20, '2020-10-12');
+
 
 -- --------------------------------------------------------
 
@@ -98,10 +95,6 @@ CREATE TABLE `t_makanan` (
 -- Dumping data for table `t_makanan`
 --
 
-INSERT INTO `t_makanan` (`m_id`, `a_username`, `m_namamakanan`, `m_harga`, `m_descmakanan`, `m_gambar`) VALUES
-(1, 'admin', 'jus mangga wow', 7000, 'hdhfs', '5f9bcfb1114c0.png'),
-(2, 'admin', 'jus manggi', 4999, 'goss', '5f9bcfe0105c2.png'),
-(3, 'admin', 'jus nigi', 3000, 'hmm.. nyaman', '5f9bcffe02fc2.png');
 
 -- --------------------------------------------------------
 
@@ -138,8 +131,6 @@ CREATE TABLE `t_user` (
 -- Dumping data for table `t_user`
 --
 
-INSERT INTO `t_user` (`u_Username`, `u_pwuser`, `u_NamaUser`, `u_AlamatUser`, `u_NoHp`, `u_Foto`) VALUES
-('user', '$2y$10$uT3vCbC1vwuvt1rPB0l0/u6qcd6g9MC1HdnGpL3bsYv0.5/GGz4Jm', 'user', 'user', 0, '5f9bcf341b815.png');
 
 --
 -- Indexes for dumped tables

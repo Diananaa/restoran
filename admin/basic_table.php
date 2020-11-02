@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>List Employees</title>
+  <title>Daftar Makanan</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -53,9 +56,9 @@
           <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                            <img alt="" src="img/android-icon-36x36.png">
+                                <img alt="" src="img/<?= $_SESSION['foto']?>" height="40" width="40">
                             </span>
-                            <span class="username">Username</span>
+                            <span class="username"><?= $_SESSION['username']?></span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -99,7 +102,7 @@
                       </a>
           </li>
           <li>
-            <a class="" href="person.php? id=5">
+          <a class="" href="person.php">
                           <i class="icon_table"></i>
                           <span>User</span>
                       </a>
@@ -137,29 +140,32 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th><i class="icon_key_alt"></i> No.</th>
-                      <th><i class="icon_profile"></i> Nama Makanan</th>
-                      <th><i class="icon_calendar"></i> Harga</th>
-                      <th><i class="icon_pin_alt"></i> Deskripsi</th>
-                      <th><i class="icon_mobile"></i> Gambar</th>
+                      <th><i class="icon_ol"></i> No.</th>
+                      <th><i class="icon_tags_alt"></i> Nama Makanan</th>
+                      <th><i class="icon_currency"></i> Harga</th>
+                      <th><i class="icon_star_alt"></i> Deskripsi</th>
+                      <th><i class="icon_image"></i> Gambar</th>
                       <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                   </thead>
                   <tbody>
                      <?php include 'koneksi.php';
-                        $proses=$mysqli->query("SELECT nip, nama, tgl, kota, kontak, departemen from karyawan");
+                        $proses=$mysqli->query("SELECT * from t_makanan");
+                        $i=1;
                         ?>
                         <?php while ($data=$proses->fetch_object()) {?>
                     <tr>
-                      <td><?php echo $data->nip?></td>
-                      <td><?php echo $data->nama?></td>
-                      <td><?php echo $data->tgl?></td>
-                      <td><?php echo $data->kota?></td>
-                      <td><?php echo $data->kontak?></td>
+                      <td><?php echo $i++?></td>
+                      <td><?php echo $data->m_namamakanan?></td>
+                      <td><?php echo "Rp".number_format($data->m_harga)?></td>
+                      <td><?php echo $data->m_descmakanan?></td>
+                      <td>
+                        <img alt="" src="../image/<?php echo $data->m_gambar?>" height="40" width="40">
+                      </td>
                       <td>
                         <div class="btn-group">
-                          <a class="btn btn-primary" href="form_update.php? nip=<?php echo $data->nip ?>"><i class="icon_documents_alt"></i></a>
-                          <a class="btn btn-danger" onclick="return confirm('Yakin akan menghapus data ini ?')" href="delete.php?nip=<?php echo $data->nip?>"><i class="icon_close_alt2"></i></a>
+                          <a class="btn btn-primary" href="form_update.php? id=<?php echo $data->m_id ?>"><i class="icon_documents_alt"></i></a>
+                          <a class="btn btn-danger" onclick="return confirm('Yakin akan menghapus data ini ?')" href="delete.php?id=<?php echo $data->m_id?>"><i class="icon_close_alt2"></i></a>
                         </div>
                       </td>
                     </tr>
