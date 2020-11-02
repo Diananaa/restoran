@@ -16,7 +16,7 @@ $ambil=mysqli_fetch_array($query);
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="img/favicon.ico">
 
   <title>Profile Administrator</title>
 
@@ -122,7 +122,7 @@ $ambil=mysqli_fetch_array($query);
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-user-md"></i>Profil Administrator</h3>
+            <h3 class="page-header"><i class="fa fa-user"></i>Profil Administrator</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="profile.php">Beranda</a></li>
               <li><i class="fa fa-user-md"></i>Profil</li>
