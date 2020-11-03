@@ -79,7 +79,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       </a>
     </div>
     <?php include 'admin/koneksi.php';
-      $proses=$mysqli->query("SELECT * from t_makanan LEFT JOIN t_detailmakanan ON t_makanan.m_id=t_detailmakanan.m_id where dm_tanggal='$date'");
+      $proses=$mysqli->query("SELECT * from t_makanan LEFT JOIN t_detailmakanan ON t_makanan.m_id=t_detailmakanan.m_id where dm_tanggal='$date' and dm_JumlahMakanan!=0");
       ?>
       <?php while ($data=$proses->fetch_object()) {?>
     <form action="aksi_pesanMakanan.php?id=<?=$_SESSION["id"]?>" method="post"> 
