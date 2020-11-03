@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 02, 2020 at 09:05 PM
+-- Generation Time: Nov 03, 2020 at 06:28 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -54,10 +54,18 @@ INSERT INTO `t_admin` (`a_id`, `a_Username`, `a_pwadmin`, `a_NamaAdmin`, `a_TglL
 CREATE TABLE `t_detailmakanan` (
   `dm_id` int(11) NOT NULL,
   `m_id` int(11) DEFAULT NULL,
-  `a_username` varchar(255) DEFAULT NULL,
   `dm_JumlahMakanan` int(11) DEFAULT NULL,
   `dm_Tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_detailmakanan`
+--
+
+INSERT INTO `t_detailmakanan` (`dm_id`, `m_id`, `dm_JumlahMakanan`, `dm_Tanggal`) VALUES
+(7, 1, 12, '2020-11-03'),
+(8, 1, 13, '2020-11-04'),
+(11, 2, 1, '2020-11-04');
 
 -- --------------------------------------------------------
 
@@ -66,12 +74,19 @@ CREATE TABLE `t_detailmakanan` (
 --
 
 CREATE TABLE `t_detailpesan` (
-  `dp_id` int(50) NOT NULL,
-  `p_id` int(50) DEFAULT NULL,
-  `dp_diskon` int(50) DEFAULT NULL,
+  `dp_id` varchar(100) NOT NULL,
+  `dp_diskon` int(50) DEFAULT '0',
   `dp_totalbayar` int(50) DEFAULT NULL,
-  `dp_tanggal` int(11) NOT NULL
+  `dp_tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_detailpesan`
+--
+
+INSERT INTO `t_detailpesan` (`dp_id`, `dp_diskon`, `dp_totalbayar`, `dp_tanggal`) VALUES
+('KK2020-11-030001', 10, 54000, '2020-11-03'),
+('KK2020-11-040001', 0, 70000, '2020-11-04');
 
 -- --------------------------------------------------------
 
@@ -93,7 +108,8 @@ CREATE TABLE `t_makanan` (
 --
 
 INSERT INTO `t_makanan` (`m_id`, `a_id`, `m_namamakanan`, `m_harga`, `m_descmakanan`, `m_gambar`) VALUES
-(1, 1, 'Krabby Patty', 30000, 'Tomat segar, potongan keju, sayuran, daging sapi berkualitas', '896801177_burger.jpg');
+(1, 1, 'Krabby Patty', 30000, 'Tomat segar, potongan keju, sayuran, daging sapi berkualitas', '896801177_burger.jpg'),
+(2, 1, 'Hot Patty', 20000, 'Roti tebal, sosis sapi asli, keju mozarella', '2060450467_hotdog-royalty-free-image-185123377-1562609410.jpg');
 
 -- --------------------------------------------------------
 
@@ -103,13 +119,22 @@ INSERT INTO `t_makanan` (`m_id`, `a_id`, `m_namamakanan`, `m_harga`, `m_descmaka
 
 CREATE TABLE `t_pesan` (
   `p_id` int(11) NOT NULL,
+  `dp_id` varchar(100) NOT NULL,
   `dm_id` int(11) DEFAULT NULL,
   `u_Username` varchar(255) DEFAULT NULL,
-  `a_Username` varchar(255) DEFAULT NULL,
   `p_banyak` int(11) DEFAULT NULL,
   `p_TotalHarga` int(11) DEFAULT NULL,
   `p_DescPesanan` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_pesan`
+--
+
+INSERT INTO `t_pesan` (`p_id`, `dp_id`, `dm_id`, `u_Username`, `p_banyak`, `p_TotalHarga`, `p_DescPesanan`) VALUES
+(14, 'KK2020-11-030001', 7, '1', 2, 60000, 'asas'),
+(15, 'KK2020-11-040001', 8, '5', 1, 30000, ''),
+(16, 'KK2020-11-040001', 11, '5', 2, 40000, '');
 
 -- --------------------------------------------------------
 
@@ -132,7 +157,8 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`u_id`, `u_Username`, `u_pwuser`, `u_NamaUser`, `u_AlamatUser`, `u_NoHp`, `u_Foto`) VALUES
-(1, 'user', '$2y$10$uT3vCbC1vwuvt1rPB0l0/u6qcd6g9MC1HdnGpL3bsYv0.5/GGz4Jm', 'user', 'user', 0, 'IMG_20200301_134758.jpg');
+(1, 'user', '$2y$10$uT3vCbC1vwuvt1rPB0l0/u6qcd6g9MC1HdnGpL3bsYv0.5/GGz4Jm', 'user', 'user', 0, 'IMG_20200301_134758.jpg'),
+(5, 'yusuf', '$2y$10$WrLIXYVRm2/lU00ggmZej.QAKUIbLyecInEfQJutOHemM8zht6/16', 'yusuf h', 'asd            ', 1212, '579968899_d1666e12f2da5278f0251677e26b6572.jpg');
 
 --
 -- Indexes for dumped tables
@@ -167,7 +193,8 @@ ALTER TABLE `t_makanan`
 -- Indexes for table `t_pesan`
 --
 ALTER TABLE `t_pesan`
-  ADD PRIMARY KEY (`p_id`);
+  ADD PRIMARY KEY (`p_id`),
+  ADD KEY `dp_id` (`dp_id`);
 
 --
 -- Indexes for table `t_user`
@@ -186,16 +213,28 @@ ALTER TABLE `t_admin`
   MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `t_detailmakanan`
+--
+ALTER TABLE `t_detailmakanan`
+  MODIFY `dm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `t_makanan`
 --
 ALTER TABLE `t_makanan`
-  MODIFY `m_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `m_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `t_pesan`
+--
+ALTER TABLE `t_pesan`
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -206,6 +245,12 @@ ALTER TABLE `t_user`
 --
 ALTER TABLE `t_makanan`
   ADD CONSTRAINT `t_makanan_ibfk_1` FOREIGN KEY (`a_id`) REFERENCES `t_admin` (`a_id`);
+
+--
+-- Constraints for table `t_pesan`
+--
+ALTER TABLE `t_pesan`
+  ADD CONSTRAINT `t_pesan_ibfk_1` FOREIGN KEY (`dp_id`) REFERENCES `t_detailpesan` (`dp_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
