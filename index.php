@@ -31,7 +31,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 .bgimg {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("http://localhost/RESTORAN/image/shawn-ang-nmpW_WwwVSc-unsplash.jpg");
+  background-image: url("image/shawn-ang-nmpW_WwwVSc-unsplash.jpg");
   min-height: 90%;
 }
 </style>
@@ -48,10 +48,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       if(isset($_SESSION["username"])){
         ?>
       <a href="profil.php" class="w3-bar-item w3-button">Hai, <?= $_SESSION["username"]?></a>
-      <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup><?= $count?></sup></a>
-      <a href="http://localhost/RESTORAN/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
+      <a href="cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup><?= $count?></sup></a>
+      <a href="logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
       <?php }else{ ?>
-        <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Login</a>
+        <a href="loginuser.php" class="w3-bar-item w3-button w3-right">Login</a>
       <?php } ?>
 
   </div>

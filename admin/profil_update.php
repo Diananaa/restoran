@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
         }else{
             if($ukuran < 1044070){		
                 $xx = $rand.'_'.$filename;
-                move_uploaded_file($_FILES['foto']['tmp_name'], 'gambar/'.$rand.'_'.$filename);
+                move_uploaded_file($_FILES['foto']['tmp_name'], 'img/'.$rand.'_'.$filename);
                 $proses = mysqli_query($mysqli,"UPDATE t_admin SET a_Username='$username', a_pwadmin='$password', 
                 a_NamaAdmin='$nama', a_TglLahir='$tgl', a_Alamat='$alamat',a_Foto='$xx' where a_id='$id'");
             }else{
