@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 03, 2020 at 06:28 PM
+-- Generation Time: Nov 03, 2020 at 06:37 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -55,17 +55,18 @@ CREATE TABLE `t_detailmakanan` (
   `dm_id` int(11) NOT NULL,
   `m_id` int(11) DEFAULT NULL,
   `dm_JumlahMakanan` int(11) DEFAULT NULL,
-  `dm_Tanggal` date DEFAULT NULL
+  `dm_Tanggal` date DEFAULT NULL,
+  `a_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `t_detailmakanan`
 --
 
-INSERT INTO `t_detailmakanan` (`dm_id`, `m_id`, `dm_JumlahMakanan`, `dm_Tanggal`) VALUES
-(7, 1, 12, '2020-11-03'),
-(8, 1, 13, '2020-11-04'),
-(11, 2, 1, '2020-11-04');
+INSERT INTO `t_detailmakanan` (`dm_id`, `m_id`, `dm_JumlahMakanan`, `dm_Tanggal`, `a_id`) VALUES
+(7, 1, 12, '2020-11-03', 1),
+(8, 1, 13, '2020-11-04', 1),
+(11, 2, 1, '2020-11-04', 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,7 @@ CREATE TABLE `t_pesan` (
   `p_id` int(11) NOT NULL,
   `dp_id` varchar(100) NOT NULL,
   `dm_id` int(11) DEFAULT NULL,
-  `u_Username` varchar(255) DEFAULT NULL,
+  `u_Username` int(11) DEFAULT NULL,
   `p_banyak` int(11) DEFAULT NULL,
   `p_TotalHarga` int(11) DEFAULT NULL,
   `p_DescPesanan` text
@@ -132,9 +133,9 @@ CREATE TABLE `t_pesan` (
 --
 
 INSERT INTO `t_pesan` (`p_id`, `dp_id`, `dm_id`, `u_Username`, `p_banyak`, `p_TotalHarga`, `p_DescPesanan`) VALUES
-(14, 'KK2020-11-030001', 7, '1', 2, 60000, 'asas'),
-(15, 'KK2020-11-040001', 8, '5', 1, 30000, ''),
-(16, 'KK2020-11-040001', 11, '5', 2, 40000, '');
+(14, 'KK2020-11-030001', 7, 1, 2, 60000, 'asas'),
+(15, 'KK2020-11-040001', 8, 5, 1, 30000, ''),
+(16, 'KK2020-11-040001', 11, 5, 2, 40000, '');
 
 -- --------------------------------------------------------
 
@@ -174,7 +175,9 @@ ALTER TABLE `t_admin`
 -- Indexes for table `t_detailmakanan`
 --
 ALTER TABLE `t_detailmakanan`
-  ADD PRIMARY KEY (`dm_id`);
+  ADD PRIMARY KEY (`dm_id`),
+  ADD KEY `m_id` (`m_id`),
+  ADD KEY `a_id` (`a_id`);
 
 --
 -- Indexes for table `t_detailpesan`
@@ -194,7 +197,8 @@ ALTER TABLE `t_makanan`
 --
 ALTER TABLE `t_pesan`
   ADD PRIMARY KEY (`p_id`),
-  ADD KEY `dp_id` (`dp_id`);
+  ADD KEY `dp_id` (`dp_id`),
+  ADD KEY `u_Username` (`u_Username`);
 
 --
 -- Indexes for table `t_user`
@@ -241,6 +245,13 @@ ALTER TABLE `t_user`
 --
 
 --
+-- Constraints for table `t_detailmakanan`
+--
+ALTER TABLE `t_detailmakanan`
+  ADD CONSTRAINT `t_detailmakanan_ibfk_1` FOREIGN KEY (`m_id`) REFERENCES `t_makanan` (`m_id`),
+  ADD CONSTRAINT `t_detailmakanan_ibfk_2` FOREIGN KEY (`a_id`) REFERENCES `t_admin` (`a_id`);
+
+--
 -- Constraints for table `t_makanan`
 --
 ALTER TABLE `t_makanan`
@@ -250,7 +261,8 @@ ALTER TABLE `t_makanan`
 -- Constraints for table `t_pesan`
 --
 ALTER TABLE `t_pesan`
-  ADD CONSTRAINT `t_pesan_ibfk_1` FOREIGN KEY (`dp_id`) REFERENCES `t_detailpesan` (`dp_id`);
+  ADD CONSTRAINT `t_pesan_ibfk_1` FOREIGN KEY (`dp_id`) REFERENCES `t_detailpesan` (`dp_id`),
+  ADD CONSTRAINT `t_pesan_ibfk_2` FOREIGN KEY (`u_Username`) REFERENCES `t_user` (`u_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
