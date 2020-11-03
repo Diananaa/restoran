@@ -159,7 +159,9 @@ $date = date('Y-m-d');
                   </thead>
                   <tbody>
                      <?php include 'koneksi.php';
-                        $proses=$mysqli->query("SELECT *, t_makanan.m_id as 'id_makanan' from t_makanan LEFT JOIN (select * from t_detailmakanan WHERE dm_Tanggal='$date') tunion ON t_makanan.m_id=tunion.m_id");
+                        // $proses=$mysqli->query("SELECT *, t_makanan.m_id as 'id_makanan' from t_makanan LEFT JOIN (select * from t_detailmakanan WHERE dm_Tanggal='$date') tunion ON t_makanan.m_id=tunion.m_id");
+                        $proses=$mysqli->query("CALL basic('$date');");
+
                         $i=1;
                         ?>
                         <?php while ($data=$proses->fetch_object()) {?>
