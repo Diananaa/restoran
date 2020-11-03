@@ -46,7 +46,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     <?php 
       if(isset($_SESSION["username"])){
         ?>
-      <a href="#" class="w3-bar-item w3-button">Hai, <?= $_SESSION["username"]?></a>
+      <a href="profil.php" class="w3-bar-item w3-button">Hai, <?= $_SESSION["username"]?></a>
       <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup><?= $count?></sup></a>
       <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Logout</a>
       <?php }else{ ?>

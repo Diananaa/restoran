@@ -76,6 +76,9 @@ session_start();
             <input type="password" id="u_repassword" class="form-control" placeholder="Ulangi Password" name="u_repassword" required="required">
         </div>
         <div class="form-group">
+            <input class="form-control" name="foto" type="file"  accept="image/png, image/jpeg" required/>
+        </div>
+        <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Daftar</button>
         </div>
         <div class="clearfix">
