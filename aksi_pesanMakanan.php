@@ -10,7 +10,7 @@
  $id = $_GET['id'];
  $date = date('Y-m-d');
 
- $proses=$mysqli->query("SELECT * from t_pesan LEFT JOIN t_detailpesan ON t_pesan.dp_id=t_detailpesan.dp_id where dm_id='$dm_id' and dp_tanggal='$date'");
+ $proses=$mysqli->query("SELECT * from t_pesan LEFT JOIN t_detailpesan ON t_pesan.dp_id=t_detailpesan.dp_id where dm_id='$dm_id' and dp_tanggal='$date' and u_Username='$id'");
  if($proses->num_rows>0){
    $ambil=mysqli_fetch_array($proses);
  }
