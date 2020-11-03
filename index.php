@@ -64,7 +64,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
   </div>
   <div class="w3-display-middle w3-center">
     <span class="w3-text-black w3-hide-small" style="font-size:100px">RESTORAN<br>KRUSTY CRAB</span>
-    <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Menunya apa aja, ya???</a></p>
+    <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Menunya apa aja hari ini, ya???</a></p>
   </div>
 </header>
 
@@ -80,28 +80,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     </div>
     <?php include 'admin/koneksi.php';
       $proses=$mysqli->query("SELECT * from t_makanan LEFT JOIN t_detailmakanan ON t_makanan.m_id=t_detailmakanan.m_id where dm_tanggal='$date'");
-      $i=1;
       ?>
       <?php while ($data=$proses->fetch_object()) {?>
     <form action="aksi_pesanMakanan.php?id=<?=$_SESSION["id"]?>" method="post"> 
-    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
-      <h1><b><?php echo $data->m_namamakanan?></b><img src="admin/img/makanan/<?php echo $data->m_gambar?>" alt="<?php echo $data->m_namamakanan?>" width="100" height="100">
-      <span class="w3-right w3-tag w3-dark-grey w3-round"><?php echo "Rp".number_format($data->m_harga)?>,-</span></h1>
-      <p class="w3-text-grey"><?php echo $data->m_descmakanan?> 	 
-      <span class="w3-right">
-      <input type="number" step="1" max="99" min="1" value="1" name="jmlh" size="4">
-      <input type="hidden" value="<?php echo $data->m_harga?>" name="harga">
-      <?php if(isset($_SESSION["id"])){
-        ?>
-      <button type="submit" class="btn btn-primary btn-lg" name="submit" value="<?php echo $data->dm_id?>">Tambah</button>
-      <?php }else{ ?>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tambah</button>
-      <?php } ?>
-      </span>
-    </form>
-		</p>
+      <div id="pizza" class="w3-container menu w3-padding-32 w3-white" style="display: block;">
+        <h1><b><?php echo $data->m_namamakanan?></b><img src="admin/img/makanan/<?php echo $data->m_gambar?>" alt="<?php echo $data->m_namamakanan?>" width="100" height="100">
+        <span class="w3-right w3-tag w3-dark-grey w3-round"><?php echo "Rp".number_format($data->m_harga)?>,-</span></h1>
+        <p class="w3-text-grey"><?php echo $data->m_descmakanan?> 	 
+        <span class="w3-right">
+        <input type="number" step="1" max="99" min="1" value="1" name="jmlh" size="4">
+        <input type="hidden" value="<?php echo $data->m_harga?>" name="harga">
+        <?php if(isset($_SESSION["id"])){
+          ?>
+        <button type="submit" class="btn btn-primary btn-lg" name="submit" value="<?php echo $data->dm_id?>">Tambah</button>
+        <?php }else{ ?>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tambah</button>
+        <?php } ?>
+        </span>
+        </p>
 		     <hr>
     </div>
+    </form>
+	
     <?php } ?>
   </div>
 </div>
@@ -170,20 +170,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
 <script>
 // Tabbed Menu
-function openMenu(evt, menuName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("menu");
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(menuName).style.display = "block";
-  evt.currentTarget.firstElementChild.className += " w3-red";
-}
-document.getElementById("myLink").click();
+// function openMenu(evt, menuName) {
+//   var i, x, tablinks;
+//   x = document.getElementsByClassName("menu");
+//   for (i = 0; i < x.length; i++) {
+//      x[i].style.display = "none";
+//   }
+//   tablinks = document.getElementsByClassName("tablink");
+//   for (i = 0; i < x.length; i++) {
+//      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+//   }
+//   document.getElementById(menuName).style.display = "block";
+//   evt.currentTarget.firstElementChild.className += " w3-red";
+// }
+// document.getElementById("myLink").click();
 </script>
 
 </body>
