@@ -71,9 +71,7 @@ $ambil=mysqli_fetch_array($query);
   </div>
 </div>
 <!-- Footer -->
-<footer class="w3-center w3-white w3-padding-48 w3-xxlarge">
-  <p>Powered by <a href="" title="YH" target="_blank" class="w3-hover-text-green">yh</a></p>
-</footer>
+
   <script>
     var timer = null;
     $('#repass').keydown(function(){
