@@ -5,8 +5,9 @@
  session_start();
 
  $jmlh = $_POST['jmlh'];
- echo $m_id = $_POST['id'];
+ $m_id = $_POST['id'];
  $date = date('Y-m-d');
+ $id = $_SESSION['id'];
 
  $proses=$mysqli->query("SELECT * from t_detailmakanan where m_id='$m_id' and dm_Tanggal='$date'");
  $ambil=mysqli_fetch_array($proses);
@@ -15,8 +16,8 @@
     $proses = mysqli_query($mysqli,"UPDATE t_detailmakanan SET dm_JumlahMakanan='$jmlh'
     where m_id='$m_id' and dm_Tanggal='$date'");
  }else{
-    $proses = mysqli_query($mysqli,"INSERT INTO t_detailmakanan (m_id, dm_JumlahMakanan, dm_Tanggal) 
-    values('$m_id', '$jmlh', '$date')");
+    $proses = mysqli_query($mysqli,"INSERT INTO t_detailmakanan (m_id, dm_JumlahMakanan, dm_Tanggal, a_id) 
+    values('$m_id', '$jmlh', '$date', '$id')");
  }
 
  if ($proses) {
