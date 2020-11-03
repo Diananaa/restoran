@@ -11,11 +11,12 @@
  $date = date('Y-m-d');
 
  $proses=$mysqli->query("SELECT * from t_pesan LEFT JOIN t_detailpesan ON t_pesan.dp_id=t_detailpesan.dp_id where dm_id='$dm_id' and dp_tanggal='$date'");
- if($proses){
+ if($proses->num_rows>0){
    $ambil=mysqli_fetch_array($proses);
  }
 
- if ($proses){
+ if ($proses->num_rows>0){
+
     //update pesanan
      $jmlh=$jmlh+$ambil['p_banyak'];
      $harga=$_POST['harga']*$jmlh;
@@ -60,6 +61,6 @@
  }
 
  if ($proses) {
- 	echo "<script> window.location.href='index.php'</script>";
+ 	echo "<script> window.location.href='index.php#menu'</script>";
  }
  ?>
