@@ -1,5 +1,9 @@
 <?php
+include "admin/koneksi.php";
+
 session_start();
+$query=mysqli_query($mysqli,"SELECT * from t_detailmakanan WHERE a_username='".$_SESSION['id']."'");
+$count=mysqli_num_rows($query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +38,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       if(isset($_SESSION["username"])){
         ?>
       <a href="#" class="w3-bar-item w3-button">Hai, <?= $_SESSION["username"]?></a>
-      <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup>0</sup></a>
+      <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup><?= $count?></sup></a>
       <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Logout</a>
       <?php }else{ ?>
         <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Login</a>

@@ -1,3 +1,10 @@
+<?php
+include "admin/koneksi.php";
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <title>Restoran Krusty Crab</title>
@@ -19,23 +26,26 @@
             </div>
             <div class="card-body">
                     <!-- PRODUCT -->
+                    <?php 
+                        $proses=$mysqli->query("SELECT * from t_detailmakanan LEFT JOIN t_makanan ON t_detailmakanan.m_id=t_makanan.m_id WHERE a_username='".$_SESSION['id']."'");
+                        while ($data=$proses->fetch_object()) {?>
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-2 text-center">
-                                <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
+                                <img class="img-responsive" src="admin/img/makanan/<?php echo $data->m_gambar?>" alt="prewiew" width="120" height="80">
                         </div>
                         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                            <h4 class="product-name"><strong>Product Name</strong></h4>
+                            <h4 class="product-name"><strong><?php echo $data->m_namamakanan?> 	</strong></h4>
                             <h4>
-                                <small>Product description</small>
+                                <small><?php echo $data->m_descmakanan?> 	</small>
                             </h4>
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h6><strong>Rp 25.000 <span class="text-muted">x</span></strong></h6>
+                                <h6><strong><?php echo "Rp".number_format($data->m_harga)?> <span class="text-muted">x</span></strong></h6>
                             </div>
                             <div class="col-12 col-sm-4 col-md-4">
                                 <div class="quantity">
-                                    <input type="number" step="1" max="99" min="1" value="1" title="Qty" class="qty"
+                                    <input type="number" step="1" max="99" min="1" value="<?php echo $data->dm_JumlahMakanan?>" title="Qty" class="qty"
                                            size="4">
                                 </div>
                             </div>
@@ -47,6 +57,8 @@
                         </div>
                     </div>
                     <hr>
+                    <?php } ?>
+
                     <!-- END PRODUCT -->
             </div>
             <div class="card-footer">
