@@ -23,7 +23,7 @@
       mysqli_query($mysqli,"UPDATE t_pesan SET p_banyak='$jmlh', p_TotalHarga='$harga'
       where dp_id='".$ambil['dp_id']."'");
     //total harga pesanan
-      $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='".$ambil['dp_id']."'");
+      $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='".$ambil['dp_id']."' and u_Username='$id'");
       $sum=mysqli_fetch_array($sum);
       $sum=$sum['sum'];
       //update total pesanan di transaksi
@@ -51,7 +51,7 @@
    $proses = mysqli_query($mysqli,"INSERT INTO t_pesan (dp_id,dm_id, u_Username, p_banyak, p_TotalHarga) 
    values('$nextNoTransaksi', '$dm_id','$id', '$jmlh', '$harga')");
    //total harga pesanan
-   $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$nextNoTransaksi'");
+   $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$nextNoTransaksi' and u_Username='$id'");
    $sum=mysqli_fetch_array($sum);
    $sum=$sum['sum'];
    //update total pesanan di transaksi
