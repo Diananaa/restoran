@@ -176,7 +176,7 @@ $date = date('Y-m-d');
                         <div class="btn-group">
                           <a class="btn btn-primary" href="form_update.php? id=<?php echo $data->id_makanan ?>"><i class="icon_pencil"></i></a>
                           <a class="btn btn-success" href="form_update_stok.php? id=<?php echo $data->id_makanan ?>"><i class="icon_error-triangle_alt"></i></a>
-                          <a class="btn btn-danger" onclick="return confirm('Yakin akan menghapus data ini ?')" href="delete.php?id=<?php echo $data->id_makanan?>"><i class="icon_close_alt2"></i></a>
+                          <!-- <a class="btn btn-danger" onclick="return confirm('Yakin akan menghapus data ini ?')" href="delete.php?id=<?php echo $data->id_makanan?>"><i class="icon_close_alt2"></i></a> -->
                         </div>
                       </td>
                     </tr>

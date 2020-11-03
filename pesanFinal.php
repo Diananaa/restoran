@@ -18,10 +18,9 @@ session_start();
              where p_id='$id'");
     }
     //total harga pesanan
-    echo "SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$dp_id' and u_Username='$id'";
     $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$dp_id' and u_Username='$uid'");
     $sum=mysqli_fetch_array($sum);
-   echo $sum=$sum['sum'];
+    $sum=$sum['sum'];
     if($diskon!=""){
         $temp=($sum*$diskon)/100;
         $sum=$sum-$temp;

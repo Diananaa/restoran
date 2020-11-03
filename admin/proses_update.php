@@ -6,7 +6,7 @@ if (isset($_POST['update'])) {
     $makanan    = $_POST['makanan'];
     $harga      = $_POST['harga'];
     $deskripsi  = $_POST['deskripsi'];
-    $aid        = $_POST['id'];
+    $aid        = $_SESSION['id'];
 
     include_once 'koneksi.php';
     
