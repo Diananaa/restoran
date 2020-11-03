@@ -3,7 +3,10 @@ include "admin/koneksi.php";
 
 session_start();
 $query=mysqli_query($mysqli,"SELECT * from t_detailmakanan WHERE a_username='".$_SESSION['id']."'");
-$count=mysqli_num_rows($query);
+$count=0;
+if ($query){
+  $count=mysqli_num_rows($query);
+}
 ?>
 <!DOCTYPE html>
 <html>
