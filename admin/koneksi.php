@@ -9,6 +9,7 @@ if ($mysqli->connect_errno) {
     exit();
 }
 $mysqli->set_charset("utf8"); //setting karakter menggunakan encode UTF 8
+date_default_timezone_set('Asia/Jakarta');
 
 
 ?>

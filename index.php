@@ -1,11 +1,14 @@
 <?php
 include "admin/koneksi.php";
+$date = date('Y-m-d');
 
 session_start();
-$query=mysqli_query($mysqli,"SELECT * from t_detailmakanan WHERE a_username='".$_SESSION['id']."'");
-$count=0;
-if ($query){
-  $count=mysqli_num_rows($query);
+if(isset($_SESSION["id"])){
+  $query=mysqli_query($mysqli,"SELECT * from t_pesan LEFT JOIN t_detailpesan ON t_pesan.dp_id=t_detailpesan.dp_id WHERE u_Username='".$_SESSION['id']."' and dp_Tanggal='$date'");
+  $count=0;
+  if ($query){
+    $count=mysqli_num_rows($query);
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -16,6 +19,9 @@ if ($query){
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style>
 body, html {height: 100%}
@@ -72,19 +78,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       </a>
     </div>
     <?php include 'admin/koneksi.php';
-      $proses=$mysqli->query("SELECT * from t_makanan");
+      $proses=$mysqli->query("SELECT * from t_makanan LEFT JOIN t_detailmakanan ON t_makanan.m_id=t_detailmakanan.m_id where dm_tanggal='$date'");
       $i=1;
       ?>
       <?php while ($data=$proses->fetch_object()) {?>
-        <form action="aksi_tambahMakanan.php?id=<?=$_SESSION["id"]?>" method="post"> 
-
+    <form action="aksi_pesanMakanan.php?id=<?=$_SESSION["id"]?>" method="post"> 
     <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
       <h1><b><?php echo $data->m_namamakanan?></b><img src="admin/img/makanan/<?php echo $data->m_gambar?>" alt="<?php echo $data->m_namamakanan?>" width="100" height="100">
- <span class="w3-right w3-tag w3-dark-grey w3-round"><?php echo "Rp".number_format($data->m_harga)?>,-</span></h1>
+      <span class="w3-right w3-tag w3-dark-grey w3-round"><?php echo "Rp".number_format($data->m_harga)?>,-</span></h1>
       <p class="w3-text-grey"><?php echo $data->m_descmakanan?> 	 
       <span class="w3-right">
       <input type="number" step="1" max="99" min="1" value="1" name="jmlh" size="4">
-      <button type="submit" class="btn btn-primary" name="submit" value="<?php echo $data->m_id?>">Tambah</button>
+      <input type="hidden" value="<?php echo $data->m_harga?>" name="harga">
+      <?php if(isset($_SESSION["id"])){
+        ?>
+      <button type="submit" class="btn btn-primary btn-lg" name="submit" value="<?php echo $data->dm_id?>">Tambah</button>
+      <?php }else{ ?>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Tambah</button>
+      <?php } ?>
       </span>
     </form>
 		</p>
@@ -136,7 +147,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
 
 <!-- modals -->
 
-<div class="modal" tabindex="-1" role="dialog">
+<div class="modal" tabindex="-1" id="myModal" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -146,11 +157,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
         </button>
       </div>
       <div class="modal-body">
-        <p>Anda perlu login untuk melakukan pemesanan!</p>
+        <h3>Anda perlu login untuk melakukan pemesanan!</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Lanjutkan login</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-default"><a href="loginuser.php">Lanjutkan login</a></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
       </div>
     </div>
   </div>
