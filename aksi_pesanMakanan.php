@@ -61,6 +61,6 @@
  }
 
  if ($proses) {
- 	// echo "<script> window.location.href='index.php#menu'</script>";
+ 	echo "<script> window.location.href='index.php#menu'</script>";
  }
  ?>
