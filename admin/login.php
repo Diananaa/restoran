@@ -12,7 +12,7 @@ $keadaan=mysqli_num_rows($query);
 
 if($keadaan > 0)
 {
- echo   $_SESSION['username']=$ambil['a_Username'];
+    $_SESSION['username']=$ambil['a_Username'];
     $_SESSION['nama']=$ambil['a_NamaAdmin'];
     $_SESSION['foto']=$ambil['a_Foto'];
     $_SESSION['id']=$ambil['a_id'];

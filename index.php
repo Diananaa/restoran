@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <title>Restoran Krusty Crab</title>
@@ -27,8 +30,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     <a href="#menu" class="w3-bar-item w3-button">MENU</a>
     <a href="#about" class="w3-bar-item w3-button">TENTANG KAMI</a>
     <a href="#myMap" class="w3-bar-item w3-button">KONTAK</a>
-    <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button">Login</a>
-    <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup>0</sup></a>
+    <?php 
+      if(isset($_SESSION["username"])){
+        ?>
+      <a href="#" class="w3-bar-item w3-button">Hai, <?= $_SESSION["username"]?></a>
+      <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup>0</sup></a>
+      <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Logout</a>
+      <?php }else{ ?>
+        <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Login</a>
+      <?php } ?>
+
   </div>
 </div>
   
@@ -58,12 +69,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
       $i=1;
       ?>
       <?php while ($data=$proses->fetch_object()) {?>
+        <form action="aksi_tambahMakanan.php?id=<?=$_SESSION["id"]?>" method="post"> 
+
     <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
       <h1><b><?php echo $data->m_namamakanan?></b><img src="admin/img/makanan/<?php echo $data->m_gambar?>" alt="<?php echo $data->m_namamakanan?>" width="100" height="100">
  <span class="w3-right w3-tag w3-dark-grey w3-round"><?php echo "Rp".number_format($data->m_harga)?>,-</span></h1>
-      <p class="w3-text-grey"><?php echo $data->m_descmakanan?> 	  
-	  <span class="w3-right "><button type="button" class="btn btn-primary">Tambah</button>
-</span>
+      <p class="w3-text-grey"><?php echo $data->m_descmakanan?> 	 
+      <span class="w3-right">
+      <input type="number" step="1" max="99" min="1" value="1" name="jmlh" size="4">
+      <button type="submit" class="btn btn-primary" name="submit" value="<?php echo $data->m_id?>">Tambah</button>
+      </span>
+    </form>
 		</p>
 		     <hr>
     </div>

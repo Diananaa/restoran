@@ -3,10 +3,6 @@ include 'admin/koneksi.php';
 // include 'backend/mc_makanan.php';
 
 session_start();
-if(isset($_SESSION["login"])){
-    header("Location: index.php");
-    exit;
-}
 
 if(isset($_POST["login"])){
     $u_Username = $_POST["u_Username"];
@@ -17,8 +13,9 @@ if(isset($_POST["login"])){
     if(mysqli_num_rows($result) === 1){
         $row = mysqli_fetch_assoc($result);
 
-        // var_dump($row);
         if (password_verify($u_pwuser, $row["u_pwuser"])){
+        $_SESSION['username']=$u_Username;
+        $_SESSION['id']=$row["u_id"];
          header("Location: index.php");
     
             exit;
