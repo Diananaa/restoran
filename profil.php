@@ -12,6 +12,10 @@ $ambil=mysqli_fetch_array($query);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="shortcut icon" href="admin/img/favicon.ico">
+
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
@@ -65,7 +69,11 @@ $ambil=mysqli_fetch_array($query);
     	</form>
       </div>
   </div>
-
+</div>
+<!-- Footer -->
+<footer class="w3-center w3-white w3-padding-48 w3-xxlarge">
+  <p>Powered by <a href="" title="YH" target="_blank" class="w3-hover-text-green">yh</a></p>
+</footer>
   <script>
     var timer = null;
     $('#repass').keydown(function(){

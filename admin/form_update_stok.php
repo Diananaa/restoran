@@ -3,6 +3,11 @@ include "koneksi.php";
 ob_start();
 
 session_start();
+if (!isset($_SESSION["username"])){
+  //variabel session salah, user tidak seharusnya ada dihalaman ini. Kembalikan ke login
+  header( "Location: login.php" );
+
+}
 date_default_timezone_set('Asia/Jakarta');
 $date = date('Y-m-d');
 $query=mysqli_query($mysqli,"SELECT *, t_makanan.m_id as 'id_makanan' from t_makanan LEFT JOIN (select * from t_detailmakanan WHERE dm_Tanggal='$date') tunion ON t_makanan.m_id=tunion.m_id WHERE t_makanan.m_id='".$_GET['id']."'");
@@ -71,7 +76,7 @@ $ambil=mysqli_fetch_array($query);
                 <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
               </li>
               <li>
-                <a href="index.php"><i class="icon_key_alt"></i> Log Out</a>
+                <a href="logout.php"><i class="icon_key_alt"></i> Log Out</a>
               </li>
             </ul>
           </li>

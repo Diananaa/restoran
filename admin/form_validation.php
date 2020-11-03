@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION["username"])){
+  //variabel session salah, user tidak seharusnya ada dihalaman ini. Kembalikan ke login
+  header( "Location: login.php" );
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +69,7 @@ session_start();
                 <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
               </li>
               <li>
-                <a href="index.php"><i class="icon_key_alt"></i> Log Out</a>
+                <a href="logout.php"><i class="icon_key_alt"></i> Log Out</a>
               </li>
             </ul>
           </li>

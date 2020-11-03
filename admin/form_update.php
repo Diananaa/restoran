@@ -3,6 +3,11 @@ include "koneksi.php";
 ob_start();
 
 session_start();
+if (!isset($_SESSION["username"])){
+  //variabel session salah, user tidak seharusnya ada dihalaman ini. Kembalikan ke login
+  header( "Location: login.php" );
+
+}
 $query=mysqli_query($mysqli,"SELECT * from t_makanan WHERE m_id='".$_GET['id']."'");
 $ambil=mysqli_fetch_array($query);
 ?>
@@ -69,7 +74,7 @@ $ambil=mysqli_fetch_array($query);
                 <a href="profile.php"><i class="icon_profile"></i> My Profile</a>
               </li>
               <li>
-                <a href="index.php"><i class="icon_key_alt"></i> Log Out</a>
+                <a href="logout.php"><i class="icon_key_alt"></i> Log Out</a>
               </li>
             </ul>
           </li>

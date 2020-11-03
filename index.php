@@ -22,6 +22,7 @@ if(isset($_SESSION["id"])){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="admin/img/favicon.ico">
 
 <style>
 body, html {height: 100%}
@@ -48,7 +49,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
         ?>
       <a href="profil.php" class="w3-bar-item w3-button">Hai, <?= $_SESSION["username"]?></a>
       <a href="http://localhost/RESTORAN/cart.php" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i><sup><?= $count?></sup></a>
-      <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Logout</a>
+      <a href="http://localhost/RESTORAN/logout.php" class="w3-bar-item w3-button w3-right">Logout</a>
       <?php }else{ ?>
         <a href="http://localhost/RESTORAN/loginuser.php" class="w3-bar-item w3-button w3-right">Login</a>
       <?php } ?>

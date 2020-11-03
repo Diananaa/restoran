@@ -14,6 +14,7 @@ $dp_id=0;
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<link rel="shortcut icon" href="admin/img/favicon.ico">
 
 <script src="https://use.fontawesome.com/c560c025cf.js"></script>
 <body>
