@@ -1,5 +1,5 @@
 <?php
-$mysql_server = "localhost"; //mendeklarasikan IP Server yg diakses
+$mysql_server = "localhost:3307"; //mendeklarasikan IP Server yg diakses
 $mysql_user = "root"; //usernama mysql
 $mysql_password = ""; //password xampp default kosong
 $mysql_db = "restoran_krustycrab";   //nama database yang dipilih

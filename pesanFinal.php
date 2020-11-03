@@ -3,9 +3,12 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 include_once 'admin/koneksi.php';
+session_start();
 
     $diskon       = $_POST['diskon'];
     $dp_id       = $_POST['dp_id'];
+    $uid = $_SESSION['id'];
+
     $i=0;
     foreach ($_POST['p_id'] as $id) {
         $catatan = $_POST['catatan'][$i];
@@ -15,9 +18,10 @@ include_once 'admin/koneksi.php';
              where p_id='$id'");
     }
     //total harga pesanan
-    $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$dp_id'");
+    echo "SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$dp_id' and u_Username='$id'";
+    $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='$dp_id' and u_Username='$uid'");
     $sum=mysqli_fetch_array($sum);
-    $sum=$sum['sum'];
+   echo $sum=$sum['sum'];
     if($diskon!=""){
         $temp=($sum*$diskon)/100;
         $sum=$sum-$temp;

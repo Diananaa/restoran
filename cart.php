@@ -24,7 +24,7 @@ $dp_id=0;
             <div class="card-header bg-dark text-light">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 Keranjang pesanan
-                <a href="http://localhost/RESTORAN/#menu" class="btn btn-outline-info btn-sm pull-right">Tambah makanan</a>
+                <a href="../RESTORAN/#menu" class="btn btn-outline-info btn-sm pull-right">Tambah makanan</a>
                 <div class="clearfix"></div>
             </div>
             <div class="card-body">

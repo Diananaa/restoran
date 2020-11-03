@@ -21,7 +21,7 @@
      $jmlh=$jmlh+$ambil['p_banyak'];
      $harga=$_POST['harga']*$jmlh;
       mysqli_query($mysqli,"UPDATE t_pesan SET p_banyak='$jmlh', p_TotalHarga='$harga'
-      where dp_id='".$ambil['dp_id']."'");
+      where dp_id='".$ambil['dp_id']."' and dm_id='$dm_id'");
     //total harga pesanan
       $sum=$mysqli->query("SELECT sum(p_TotalHarga) as 'sum' from t_pesan where dp_id='".$ambil['dp_id']."' and u_Username='$id'");
       $sum=mysqli_fetch_array($sum);
