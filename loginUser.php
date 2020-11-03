@@ -93,7 +93,7 @@ if(isset($_POST["login"])){
         </div>
         <div class="clearfix">
         </div>        
-        <p class="text"><a href="http://localhost/RESTORAN/daftar.php">Daftar Akun</a></p>
+        <p class="text"><a href="daftar.php">Daftar Akun</a></p>
 
     </form>
 </div>
