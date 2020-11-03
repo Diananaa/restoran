@@ -1,10 +1,10 @@
 <?php 
-include 'backend/database.php';
-include 'backend/mc_makanan.php';
+include 'admin/koneksi.php';
+// include 'backend/mc_makanan.php';
 
 session_start();
 if(isset($_SESSION["login"])){
-    header("Location: makanan_index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -12,14 +12,14 @@ if(isset($_POST["login"])){
     $u_Username = $_POST["u_Username"];
     $u_pwuser = $_POST["u_pwuser"];
 
-   $result= mysqli_query($conn,"SELECT * FROM t_user WHERE u_Username='$u_Username'");
+   $result= mysqli_query($mysqli,"SELECT * FROM t_user WHERE u_Username='$u_Username'");
 
     if(mysqli_num_rows($result) === 1){
         $row = mysqli_fetch_assoc($result);
 
         // var_dump($row);
         if (password_verify($u_pwuser, $row["u_pwuser"])){
-         header("Location: makanan_index.php");
+         header("Location: index.php");
     
             exit;
         }

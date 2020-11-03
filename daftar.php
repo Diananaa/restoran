@@ -1,33 +1,8 @@
 <?php 
-include 'backend/database.php';
-include 'backend/mc_makanan.php';
+include 'admin/koneksi.php';
 
 session_start();
-if(isset($_SESSION["login"])){
-    header("Location: makanan_index.php");
-    exit;
-}
 
-if(isset($_POST["login"])){
-    $u_Username = $_POST["u_Username"];
-    $u_pwuser = $_POST["u_pwuser"];
-
-   $result= mysqli_query($conn,"SELECT * FROM t_user WHERE u_Username='$u_Username'");
-
-    if(mysqli_num_rows($result) === 1){
-        $row = mysqli_fetch_assoc($result);
-
-        // var_dump($row);
-        if (password_verify($u_pwuser, $row["u_pwuser"])){
-         header("Location: makanan_index.php");
-    
-            exit;
-        }
-        $error = true;
-    }else{
-     $error2=true;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +55,7 @@ if(isset($_POST["login"])){
     <p style="color: yellow; font-style:italic;">Akun tidak terdaftar!</p>    
     <?php endif; ?> 
     
-    <form action="" method="post">
+    <form role="form" method="POST" action="aksi_daftar.php" enctype="multipart/form-data">
 
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Username" name="u_Username" required="required">
@@ -95,16 +70,13 @@ if(isset($_POST["login"])){
             <input type="number" class="form-control" placeholder="No. HP" name="u_hp" required="required">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" name="u_Username" required="required">
+            <input type="password" id="u_pwuser" class="form-control" placeholder="Password" name="u_pwuser" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="u_pwuser" required="required">
+            <input type="password" id="u_repassword" class="form-control" placeholder="Ulangi Password" name="u_repassword" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Ulangi Password" name="u_repassword" required="required">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" name="login">Daftar</button>
+            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
         </div>
         <div class="clearfix">
         </div>        
@@ -112,4 +84,23 @@ if(isset($_POST["login"])){
     </form>
 </div>
 </body>
+
+<script>
+var timer = null;
+$('#u_repassword').keydown(function(){
+       clearTimeout(timer); 
+       timer = setTimeout(doStuff, 1000)
+});
+
+function doStuff() {
+    var pass = document.getElementById("u_pwuser").value;
+    var repass = document.getElementById("u_repassword").value;
+    if (pass!=repass){
+        document.getElementById("u_repassword").value="";
+        document.getElementById("u_pwuser").value="";
+        alert('Password tidak sama!');
+        document.getElementById("u_pwuser").focus();
+    }
+}
+</script>
 </html>
