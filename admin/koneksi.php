@@ -1,5 +1,5 @@
 <?php
-$mysql_server = "localhost:3307"; //mendeklarasikan IP Server yg diakses
+$mysql_server = "localhost"; //mendeklarasikan IP Server yg diakses
 $mysql_user = "root"; //usernama mysql
 $mysql_password = ""; //password xampp default kosong
 $mysql_db = "restoran_krustycrab";   //nama database yang dipilih
@@ -10,6 +10,7 @@ if ($mysqli->connect_errno) {
 }
 $mysqli->set_charset("utf8"); //setting karakter menggunakan encode UTF 8
 date_default_timezone_set('Asia/Jakarta');
+
 
 
 ?>
