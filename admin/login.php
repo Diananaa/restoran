@@ -22,8 +22,7 @@ if($keadaan > 0)
 }
 else
 {
-    echo "<align = center>Login gagal,Username atau password salah, silahkan<br />";
-    echo "<a href='index.php'>Login Kembali</a></center>";
+    echo "<script> alert('Login gagal,Username atau password salah!');window.location.href='index.php'</script>";
 }
 
 ?>
